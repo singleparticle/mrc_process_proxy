@@ -11,7 +11,8 @@ set all_mrcfiles = "Micrographs/*frames.mrc"           #####:
 set convert_mrcs = "YES"                     #####: Yes or NO         
 
 ##### ----- Motioncorr Parameters -----#####
-set Motioncorr            = /public/EM/motioncorr/motioncorr_cu7.0/bin/motioncorr
+##### ----- Change motioncorr program to MotionCor2 -----#####
+set Motioncorr            = /data/share/apps/MotionCor2
 set bin                   = 1                #####: 
 set ali_first             = 0                #####: 
 set ali_last              = 0                #####: 
@@ -22,7 +23,7 @@ set Motioncorr_gid        = 1                #####: GPU id for Motioncorr, norma
 
 
 ##### -----  Gautomatch Parameters   -----#####
-set GAUTOMATCH            = /lmb/home/kzhang/programs/automatch_v0.50/bin/Gautomatch
+set GAUTOMATCH            = /data/share/apps/Gautomatch
 set apixM                 = 1.04             #####: Micrograph pixel size in Angstrom (after Motioncorr)
 set Templates             = dynactin_templates_all.mrcs            #####: MRC stack; NULL or NONE to automatically generate templates
 set apixT                 = 1.34             #####: Templates pixel size in Angstrom;
@@ -49,7 +50,7 @@ set GAUTOMATCH_ExtraPar   = " --do_unfinished  --do_pre_filter --pre_hp 1000"   
 
 
 ##### -----      GCTF Parameters     -----#####
-set GCTF                  = /public/EM/Gctf/bin/Gctf
+set GCTF                  = /data/share/apps//Gctf
 set kV                    = 300              #####: High tension in Kilovolt, typically 300, 200 or 120
 set Cs                    = 2.7              #####: Spherical aberration, in millimeter
 set ac                    = 0.1              #####: Amplitude contrast
@@ -78,11 +79,11 @@ set KFlash="\x1b\x5b5m"
 
 if ( ! -f $Motioncorr ) then
 
-echo "The program  $Motioncorr does NOT exisit! Exit now! "
+echo "The program  $Motioncor2 does NOT exisit! Exit now! "
 exit 
 
 else if ( ! -f $GAUTOMATCH ) then
-echo "The program  $Motioncorr does NOT exisit! Exit now! "
+echo "The program  $GAUTOMATCH does NOT exisit! Exit now! "
 exit 
 
 else if ( ! -f $Templates ) then
@@ -90,7 +91,7 @@ echo "The template $Templates does NOT exisit! Check your input! Exit now! "
 exit 
 
 else if ( ! -f $GCTF ) then
-echo "The program  $Motioncorr does NOT exisit! Exit now! "
+echo "The program  $GCTF does NOT exisit! Exit now! "
 exit 
 
 endif
